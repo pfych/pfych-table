@@ -1,4 +1,4 @@
-declare module 'simple-table' {
+declare module 'pfych-table' {
   interface Column<T> {
     header: string;
     accessor: keyof T;
