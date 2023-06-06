@@ -43,7 +43,7 @@ renderTarget.append(
 
 ### Table: `sortable?: boolean`
 
-Stub for later, applies a className to the entire table to allow for sorting target
+Allows the table to be sortable, will auto-wrap the table in a `createSortableTable()` call. This is exported for other tables, it takes an input of `Element` and returns `void`. Calling will add click handlers & functions to the table.
 
 ### Column: `className?: string`
 

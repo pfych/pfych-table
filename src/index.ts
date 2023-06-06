@@ -1,5 +1,68 @@
 import { Column } from './types';
 
+const createSortableTable = (table: Element): void => {
+  let lastClicked = '';
+
+  const sortRows = (sortBy: string, header: Element, rows: Element[]) => {
+    // Discover the selected header
+    const allHeaders = [...(header.querySelectorAll('th') || [])];
+    const indexOfSortBy = allHeaders
+      .map((header) => header.innerText)
+      .indexOf(sortBy);
+
+    // Apply Styles to selected header
+    allHeaders.forEach((header) => {
+      header.style.textDecoration = 'none';
+      header.style.userSelect = 'none';
+    });
+    allHeaders[indexOfSortBy].style.textDecoration = 'underline';
+
+    // Sort the rows and update the parent
+    const sortedRows = rows.sort((rowA, rowB) => {
+      const rowAValue =
+        rowA.querySelectorAll('td')[indexOfSortBy].innerText || 'z';
+      const rowBValue =
+        rowB.querySelectorAll('td')[indexOfSortBy].innerText || 'z';
+
+      const rowAValueSortable = /^[0-9,.:]*$/.test(rowAValue)
+        ? parseInt(rowAValue.replace(/[,:]/g, ''))
+        : rowAValue;
+
+      const rowBValueSortable = /^[0-9,.:]*$/.test(rowBValue)
+        ? parseInt(rowBValue.replace(/[,;]/g, ''))
+        : rowBValue;
+
+      if (rowAValueSortable > rowBValueSortable) {
+        return lastClicked === sortBy ? -1 : 1;
+      }
+
+      if (rowAValueSortable < rowBValueSortable) {
+        return lastClicked === sortBy ? 1 : -1;
+      }
+
+      return 0;
+    });
+
+    lastClicked = lastClicked === sortBy ? '' : sortBy;
+
+    const tableBody = rows[0].parentElement;
+
+    tableBody.innerHTML = '';
+    tableBody.append(...sortedRows);
+  };
+
+  const header = table.querySelector('thead tr');
+  const rows = [...(table.querySelectorAll('tbody tr') || [])];
+
+  // Add Click handlers to headers
+  header.querySelectorAll('th').forEach((node) => {
+    node.style.setProperty('cursor', 'pointer');
+    node.addEventListener('click', () =>
+      sortRows(node.innerText, header, rows),
+    );
+  });
+};
+
 const renderTable = <T>(args: {
   columns: Column<T>[];
   data: T[];
@@ -7,7 +70,6 @@ const renderTable = <T>(args: {
 }): Element => {
   const { columns, data, sortable } = args;
   const wrapper = document.createElement('div');
-  wrapper.className = sortable ? 'sortable' : '';
 
   const table = document.createElement('table');
   const header = document.createElement('thead');
@@ -48,7 +110,11 @@ const renderTable = <T>(args: {
     body.append(row);
   });
 
+  if (sortable) {
+    createSortableTable(table);
+  }
+
   return wrapper;
 };
 
-export { renderTable, Column };
+export { renderTable, createSortableTable, Column };
