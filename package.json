@@ -1,0 +1,31 @@
+{
+  "name": "simple-table",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "printWidth": 80
+  },
+  "keywords": [
+    "table",
+    "html"
+  ],
+  "author": "Pfych",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "0.17.19",
+    "npm-dts": "^1.3.12",
+    "prettier": "^2.8.8",
+    "typescript": "5.1.3"
+  }
+}
