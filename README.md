@@ -1,4 +1,4 @@
-# Simple Table Renderer
+# Simple Table Renderer `pfych-table`
 
 Taking an input of data and options, return a html `Element` which can then be inserted into the DOM. This is a tool used on [my website](https://pfy.ch) to generate certain tables.
 
