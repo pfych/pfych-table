@@ -4,20 +4,17 @@ const createSortableTable = (table: Element): void => {
   let lastClicked = '';
 
   const sortRows = (sortBy: string, header: Element, rows: Element[]) => {
-    // Discover the selected header
     const allHeaders = [...(header.querySelectorAll('th') || [])];
     const indexOfSortBy = allHeaders
       .map((header) => header.innerText)
       .indexOf(sortBy);
 
-    // Apply Styles to selected header
     allHeaders.forEach((header) => {
       header.style.textDecoration = 'none';
       header.style.userSelect = 'none';
     });
     allHeaders[indexOfSortBy].style.textDecoration = 'underline';
 
-    // Sort the rows and update the parent
     const sortedRows = rows.sort((rowA, rowB) => {
       const rowAValue =
         rowA.querySelectorAll('td')[indexOfSortBy].innerText || 'z';
@@ -54,7 +51,6 @@ const createSortableTable = (table: Element): void => {
   const header = table.querySelector('thead tr');
   const rows = [...(table.querySelectorAll('tbody tr') || [])];
 
-  // Add Click handlers to headers
   header.querySelectorAll('th').forEach((node) => {
     node.style.setProperty('cursor', 'pointer');
     node.addEventListener('click', () =>
