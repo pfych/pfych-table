@@ -1,7 +1,14 @@
 {
   "name": "pfych-table",
-  "version": "1.0.4",
-  "description": "",
+  "version": "1.0.5",
+  "description": "Generate a sortable HTML Table based off of config & a data object",
+  "homepage": "https://github.com/pfych/pfych-table",
+  "author": "Pfych (https://pfy.ch)",
+  "license": "MIT",
+  "keywords": [
+    "table",
+    "html"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
@@ -16,16 +23,9 @@
     "arrowParens": "always",
     "printWidth": 80
   },
-  "keywords": [
-    "table",
-    "html"
-  ],
-  "author": "Pfych",
-  "license": "MIT",
   "devDependencies": {
     "esbuild": "0.17.19",
-    "npm-dts": "^1.3.12",
-    "prettier": "^2.8.8",
+    "prettier": "2.8.8",
     "typescript": "5.1.3"
   }
 }
