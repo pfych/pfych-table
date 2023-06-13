@@ -1,6 +1,6 @@
 {
   "name": "pfych-table",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Generate a sortable HTML Table based off of config & a data object",
   "homepage": "https://github.com/pfych/pfych-table",
   "author": "Pfych (https://pfy.ch)",

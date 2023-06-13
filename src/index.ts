@@ -1,6 +1,6 @@
 import { Column } from './types';
 
-const createSortableTable = (table: Element): void => {
+export const createSortableTable = (table: Element): void => {
   let lastClicked = '';
 
   const sortRows = (sortBy: string, header: Element, rows: Element[]) => {
@@ -59,7 +59,7 @@ const createSortableTable = (table: Element): void => {
   });
 };
 
-const renderTable = <T>(args: {
+export const renderTable = <T>(args: {
   columns: Column<T>[];
   data: T[];
   sortable?: boolean;
@@ -112,5 +112,3 @@ const renderTable = <T>(args: {
 
   return wrapper;
 };
-
-export { renderTable, createSortableTable, Column };

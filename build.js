@@ -3,6 +3,7 @@ const { build } = require('esbuild');
 const shared = {
   entryPoints: ['src/index.ts'],
   bundle: true,
+  minify: true,
 };
 
 (async () => {
@@ -10,6 +11,7 @@ const shared = {
     build({
       ...shared,
       outfile: 'dist/index.js',
+      format: 'cjs',
     }),
     build({
       ...shared,
